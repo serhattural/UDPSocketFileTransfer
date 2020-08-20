@@ -7,7 +7,6 @@ class NetworkSender
 {
 public:
     NetworkSender();
-    void SendMessageStr(const std::string &message);
     void SendFile(const std::string &fileName);
 };
 
