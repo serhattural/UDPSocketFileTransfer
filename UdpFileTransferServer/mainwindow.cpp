@@ -19,8 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(networkReceiverThread, &NetworkReceiverThread::newMessage, this, &MainWindow::showMessage);
     connect(networkReceiverThread, &NetworkReceiverThread::newFile, this, &MainWindow::showImage);
     connect(networkReceiverThread, &NetworkReceiverThread::newError, this, &MainWindow::displayError);
-    //NetworkReceiver *receiver = new NetworkReceiver();
-    //receiver->ReceiveMessage();
+
     networkReceiverThread->start();
 }
 
@@ -52,12 +51,12 @@ void MainWindow::showImage(const QString &clientIp, const QByteArray &buffer)
     QWidget* widget = new QWidget();
     QHBoxLayout* hLayout = new QHBoxLayout(widget);
     QLabel *label = new QLabel(widget);
-    QPixmap *pixmap = new QPixmap();
-    pixmap->loadFromData(buffer);
+    QPixmap pixmap;
+    pixmap.loadFromData(buffer);
 
     label->setAutoFillBackground(true);
     label->setFrameShape(QFrame::Box);
-    label->setPixmap(*pixmap);
+    label->setPixmap(pixmap);
     label->setScaledContents(true);
     label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     //widget->setLayout(hLayout);
@@ -84,7 +83,7 @@ void MainWindow::on_actionOpen_Image_triggered()
     label->setPixmap(pix);
     label->setScaledContents(true);
     label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-    //widget->setLayout(hLayout);
+    widget->setLayout(hLayout);
     hLayout->addWidget(label);
     ui->tabWidget->addTab(widget, fileName);
     ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
@@ -92,5 +91,8 @@ void MainWindow::on_actionOpen_Image_triggered()
 
 void MainWindow::on_tabWidget_tabCloseRequested(int index)
 {
+    QWidget* widget = ui->tabWidget->widget(index);
     ui->tabWidget->removeTab(index);
+    // Deletes all clildren of widget
+    delete widget;
 }

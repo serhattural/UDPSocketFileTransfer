@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QThread>
 #include <QMutex>
+#include <WS2tcpip.h>
+#include <iostream>
 
 class NetworkReceiverThread : public QThread
 {
@@ -21,8 +23,10 @@ signals:
     void newError(const QString &message);
 
 private:
+    std::string ConvertAddressToString(sockaddr_in client);
     QMutex mutex;
     bool quit;
+    int port = 54000;
 };
 
 #endif // NETWORKRECEIVERTHREAD_H
