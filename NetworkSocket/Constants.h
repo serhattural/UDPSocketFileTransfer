@@ -1,0 +1,7 @@
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
+const int FILEDESC_BUFFER_SIZE = 1024;
+const int SENT_RCV_BUFFER_SIZE = 8388608;
+
+#endif // CONSTANTS_H
