@@ -34,9 +34,9 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../build-NetworkSocket-Desktop_Qt_5_15_0_MSVC2019_32bit-Debug/release/ -lNetworkSocket
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../build-NetworkSocket-Desktop_Qt_5_15_0_MSVC2019_32bit-Debug/debug/ -lNetworkSocket
-else:unix: LIBS += -L$$PWD/../build-NetworkSocket-Desktop_Qt_5_15_0_MSVC2019_32bit-Debug/ -lNetworkSocket
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../NetworkSocket/Build/MSVC2019_Qt5.15.0/debug/ -lNetworkSocket
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../NetworkSocket/Build/MSVC2019_Qt5.15.0/debug/ -lNetworkSocket
+else:unix: LIBS += -L$$PWD/../NetworkSocket/Build/MSVC2019_Qt5.15.0/debug/ -lNetworkSocket
 
 INCLUDEPATH += $$PWD/../NetworkSocket
-DEPENDPATH += $$PWD/../build-NetworkSocket-Desktop_Qt_5_15_0_MSVC2019_32bit-Debug/debug
+DEPENDPATH += $$PWD/../NetworkSocket/Build/MSVC2019_Qt5.15.0/debug
