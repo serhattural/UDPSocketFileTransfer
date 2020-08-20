@@ -1,2 +1,4 @@
 Build/
 /UdpFileTransferServer/FileTransferServer.pro.user
+/NetworkSocket/NetworkSocket.pro.user
+/UdpFileTransferClient/FileTransferClient.pro.user
